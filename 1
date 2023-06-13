@@ -1,0 +1,22 @@
+import requests
+import matplotlib.pyplot as plt
+
+# Get Bitcoin price data from CoinDesk API
+url = "https://api.coindesk.com/v1/bpi/historical/close.json?currency=USD"
+response = requests.get(url)
+data = response.json()
+
+# Extract dates and prices
+dates = list(data["bpi"].keys())
+prices = list(data["bpi"].values())
+
+# Plotting the Bitcoin chart
+plt.plot(dates, prices)
+plt.title("Bitcoin Price Chart")
+plt.xlabel("Date")
+plt.ylabel("Price (USD)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Display the chart
+plt.show()
